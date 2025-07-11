@@ -52,7 +52,6 @@ let gameOver = false;
 let score = 0;
 
 // Audio
-let wingSound = new Audio('./sources/sfx_wing.wav');
 let hitSound = new Audio('./sources/sfx_hit.wav');
 let bgm = new Audio('./sources/bgm_mario.mp3');
 bgm.loop = true;
@@ -215,8 +214,6 @@ function moveBird(e) {
         if (bgm.paused) {
             bgm.play();
         }
-        // Play sound allowing overlap with previous sound on multiple jumps in a row
-        wingSound.play();
         // Jump -> Adds 6px to the vertical velocity of the bird
         velocityY = -6;
     }
