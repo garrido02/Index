@@ -51,6 +51,11 @@ let start = false;
 let gameOver = false;
 let score = 0;
 
+// Audio
+let wingSound = new Audio('./sources/sfx_wing.wav');
+let hitSound = new Audio('./sources/sfx_hit.wav');
+let bgm = new Audio('./sources/bgm_mario.mp3');
+bgm.loop = true;
 
 // Load window
 window.onload = function() {
@@ -130,6 +135,7 @@ function update() {
 
         // Detect pipe collision
         if (detectCollision(bird, pipe)){
+            hitSound.play();
             gameOver = true;
         }
     }
@@ -143,11 +149,13 @@ function update() {
     // Draw Score
     context.fillStyle = "white";
     context.font = "45px sans-serif";
-    context.fillText(score, board.width-36,45);
+    context.fillText(score, 5,45);
 
     // Game Over Text
     if (gameOver) {
         context.fillText("GAME OVER", board.width/8,board.height/2);
+        bgm.pause();
+        bgm.currentTime = 0;
     }
 }
 
@@ -203,10 +211,13 @@ function animateBird() {
  */
 function moveBird(e) {
     // Check which key was pressed
-    if (e.code === "Space" || e.code === "ArrowUp") {
+    if ((e.code === "Space" || e.code === "ArrowUp") || e.type === "click") {
+        if (bgm.paused) {
+            bgm.play();
+        }
+        // Play sound allowing overlap with previous sound on multiple jumps in a row
+        wingSound.play();
         // Jump -> Adds 6px to the vertical velocity of the bird
-        velocityY = -6;
-    } else if (e.type === "click"){
         velocityY = -6;
     }
 
