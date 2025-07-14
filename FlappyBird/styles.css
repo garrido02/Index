@@ -7,19 +7,21 @@ body {
 
 #gameContainer {
     position: relative;
-    width: 360px;
-    height: 640px;
+    width: 100vh;
+    height: 100vh;
 }
 
 #homeScreen {
-    width: 360px;
-    height: 640px;
-    background-image: url("./sources/flappybirdbg.png");
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
+
 
 #start {
     border-radius: 8px;
@@ -28,5 +30,15 @@ body {
 
 #board {
     display: none;
-    background-image: url("./sources/flappybirdbg.png");
+
 }
+
+#board, #homeScreen{
+    background-image: url("./sources/flappybirdbg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+}
+

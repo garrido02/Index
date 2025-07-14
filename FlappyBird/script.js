@@ -1,13 +1,13 @@
 // Board settings
 let board;
-let boardWidth = 360;
-let boardHeight = 640;
+let boardWidth = window.innerWidth;
+let boardHeight = window.innerHeight;
 let context;
 
 
 // Bird starting settings
-let birdWidth = 34;
-let birdHeight = 24;
+let birdWidth = boardWidth * 0.07;
+let birdHeight = birdWidth * (48 / 68);
 let birdX = boardWidth / 8;
 let birdY = boardHeight / 2;
 let birdImg;
@@ -27,9 +27,8 @@ let bird = {
 
 // Pipes Settings
 let pipes = [];
-// Scaled to 1/8. Width/Height ratio: 384/3072
-let pipeWidth = 64;
-let pipeHeight = 512;
+let pipeWidth = boardWidth * 0.10;
+let pipeHeight = boardHeight * 0.85;
 // Pipes starting location
 let pipeX = boardWidth;
 let pipeY = 0;
@@ -40,7 +39,7 @@ let botPipeImg;
 
 //  Physics
 // Speed of pipes moving -> To the left
-let velocityX = -2;
+let velocityX = -4;
 // Gravity of the game
 let gravity = 0.4;
 // Bird jumping velocity
@@ -147,12 +146,12 @@ function update() {
 
     // Draw Score
     context.fillStyle = "white";
-    context.font = "45px sans-serif";
-    context.fillText(score, 5,45);
+    context.font = "60px sans-serif";
+    context.fillText(score, 20,60);
 
     // Game Over Text
     if (gameOver) {
-        context.fillText("GAME OVER", board.width/8,board.height/2);
+        context.fillText("GAME OVER", board.width/2.5,board.height/2);
         bgm.pause();
         bgm.currentTime = 0;
     }
